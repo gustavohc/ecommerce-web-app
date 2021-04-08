@@ -1,14 +1,25 @@
 <template>
   <v-app>
-    <router-view />
+    <Drawer/>
+    <CoreView/>
+    <Snackbar/>
   </v-app>
 </template>
 
 <script>
 import { mapGetters, mapMutations }  from 'vuex';
 
+import Drawer from '@/components/commons/Drawer.vue'
+import CoreView from '@/components/commons/View.vue'
+import Snackbar from '@/components/commons/Snackbar.vue'
+
 export default {
   name: 'App',
+  components: {
+    Drawer,
+    CoreView,
+    Snackbar
+  },
   methods: {
     ...mapMutations(['SET_USER'])
   },

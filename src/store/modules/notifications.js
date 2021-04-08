@@ -1,14 +1,10 @@
-import { version } from '@/../package.json';
-
 const state = {
   alert: false,
   snack: false,
-  packageVersion: version,
 };
 const getters = {
   alert: state => state.alert,
   snack: state => state.snack,
-  appVersion: state => state.packageVersion
 };
 const actions = {
   showSnack: ({ commit }, data) => {

@@ -60,7 +60,8 @@ export default {
     return {
       items: [
         {title: `Home`, route: '/', icon: 'mdi-view-dashboard',},
-        {title: `Produtos`, route: '/resource/asset', icon: 'mdi-devices',},
+        {title: `Produtos`, route: '/resource/product', icon: 'mdi-devices',},
+        {title: `Cupons`, route: '/resource/coupon', icon: 'mdi-ticket-percent',},
       ]
     }
   },

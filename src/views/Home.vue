@@ -1,23 +1,15 @@
 <template>
-  <div>
-    <Drawer/>
-    <CoreView/>
-    <Snackbar/>
-  </div>
+  <v-container class="fill-height">
+    <router-view></router-view>
+  </v-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import Drawer from '@/components/commons/Drawer.vue'
-import CoreView from '@/components/commons/View.vue'
-import Snackbar from '@/components/commons/Snackbar.vue'
+
 
 export default {
   name: 'Home',
-  components: {
-    Drawer,
-    CoreView,
-    Snackbar
-  }
+  
 }
 </script>

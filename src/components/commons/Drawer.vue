@@ -1,7 +1,8 @@
 <template>
   <v-navigation-drawer
+  v-if="authenticated"
     :permanent="$vuetify.breakpoint.smAndUp"
-    width="100px"
+    width="5vw"
     class="primary"
     app
     dark>

@@ -10,11 +10,11 @@ const actions = {
   loadAllCoupons: async ({ commit }) => {
     let coupons = await couponService.getAll();
 
-    commit("SET_PRODUCTS", coupons);
+    commit("SET_COUPONS", coupons);
   },
 };
 const mutations = {
-  SET_PRODUCTS: (state, data) => {
+  SET_COUPONS: (state, data) => {
     state.coupons = data;
   },
 };

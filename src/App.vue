@@ -35,3 +35,17 @@ export default {
   }
 };
 </script>
+<style>
+  html {
+    overflow-y: scroll !important;
+  }
+  .v-navigation-drawer__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .v-main__wrap {
+    margin: 0;
+    overflow: hidden !important;
+  }
+</style>

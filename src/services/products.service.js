@@ -8,7 +8,6 @@ const getAll = async () => {
   }
   return products;
 }
-
 const saveUpdate = async data => {
   let response = {}
     if(data.id)
@@ -18,8 +17,20 @@ const saveUpdate = async data => {
     
         return response;
 }
+const remove = async id => {
+  let response = await Api().delete(`/product/${id}`);
+  return response;
+}
+const attachCoupons = async data => {
+  let response = {}
+        response = await Api().post("/attach/coupons", data);
+    
+        return response;
+}
 
 export const productService = {
   getAll,
-  saveUpdate
+  saveUpdate,
+  remove,
+  attachCoupons
 }

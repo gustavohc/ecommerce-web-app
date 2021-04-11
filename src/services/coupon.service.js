@@ -8,7 +8,6 @@ const getAll = async () => {
   }
   return products;
 }
-
 const saveUpdate = async data => {
   let response = {}
     if(data.id)
@@ -18,8 +17,13 @@ const saveUpdate = async data => {
     
         return response;
 }
+const remove = async id => {
+  let response = await Api().delete(`/coupon/${id}`);
+  return response;
+}
 
 export const couponService = {
   getAll,
-  saveUpdate
+  saveUpdate,
+  remove
 }

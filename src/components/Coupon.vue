@@ -75,7 +75,7 @@
                     </v-icon>
                     <v-icon
                       small
-                      @click="deleteItem(item)"
+                      @click="confirmDelete(item)"
                     >
                       mdi-delete
                     </v-icon>
@@ -195,6 +195,24 @@
           </v-row>
         </v-card-text>
       </v-card>
+      <v-dialog v-model="dialogDelete" persistent max-width="25vw" @keydown.esc="closeDelete">
+        <v-card>
+          <v-card-title class="headline">
+            <v-row>
+              <v-col cols="2"><v-icon left large color="red">mdi-alert</v-icon></v-col>
+              <v-col cols="8" class="text-center"><span>Atenção</span></v-col>
+            </v-row>
+          </v-card-title>
+          <v-card-text class="text-center">
+            <span class="text-h5">Deseja mesmo excluir o item?</span>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn class="mx-1" color="warning" text @click="closeDelete">Cancelar</v-btn>
+            <v-btn class="mx-1" text @click="remove()">Confirmar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-col>
   </v-row>
 </template>
@@ -208,6 +226,7 @@ export default {
     return {
       loading: false,
       dialog: false,
+      dialogDelete: false,
       coupon: undefined,
       defaultCoupon: {
         code: undefined,
@@ -271,11 +290,35 @@ export default {
         console.log(err);
       }
     },
+    confirmDelete(item){
+      this.coupon = Object.assign({}, item)
+      this.dialogDelete = true
+    },
+    async remove() {
+      try{
+        let response = await couponService.remove(this.coupon.id);
+        if(response.status < 300) 
+          this.$alertSuccess("Produto deletado");
+        
+        this.closeDelete();
+        this.loadCoupons();
+      }catch(err) {
+        // catches errors both in fetch and response.json
+        this.$alertError("Houve um problema ao deletar o produto");
+        console.log(err);
+      }
+    },
     initialize() {
       this.coupon = Object.assign({}, this.defaultCoupon);
     },
-    close () {
+    close() {
       this.dialog = false
+      this.$nextTick(() => {
+        this.initialize();
+      })
+    },
+    closeDelete() {
+      this.dialogDelete = false
       this.$nextTick(() => {
         this.initialize();
       })
